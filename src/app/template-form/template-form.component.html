@@ -5,7 +5,7 @@
       type="text"
       class="form-control"
       name='nome'
-      ngModel
+      [ngModel]="usuario.nome"
       id="nome"
       placeholder="Nome"
     >
@@ -17,7 +17,7 @@
       type="email"
       class="form-control"
       name='email'
-      ngModel
+      [ngModel]='usuario.email'
       id="email"
       placeholder="nome@email.com"
     >
