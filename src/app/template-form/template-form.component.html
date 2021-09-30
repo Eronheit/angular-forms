@@ -41,124 +41,128 @@
         </div>
       </div>
 
-      <div class="row mb-3">
-        <div class="form-group has-validation col-sm-2">
-          <label for="cep">CEP</label>
-          <input
-            id="cep"
-            name='cep'
-            class="form-control"
-            placeholder="00000-000"
-            required
-            [ngModel]='usuario.cep'
-            #cep="ngModel"
-            [class.is-invalid]="checkIsValidField(cep)"
-          >
-          <span *ngIf="checkIsValidField(cep)" [class.invalid-feedback]="checkIsValidField(cep)">
-            CEP é obrigatório!
-          </span>
+      <div ngModelGroup="endereco">
+        <div class="row mb-3">
+          <div class="form-group has-validation col-sm-2">
+            <label for="cep">CEP</label>
+            <input
+              id="cep"
+              name='cep'
+              class="form-control"
+              placeholder="00000-000"
+              required
+              [ngModel]='usuario.cep'
+              #cep="ngModel"
+              [class.is-invalid]="checkIsValidField(cep)"
+              (blur)="consultaCEP(cep.value)"
+            >
+            <span *ngIf="checkIsValidField(cep)" [class.invalid-feedback]="checkIsValidField(cep)">
+              CEP é obrigatório!
+            </span>
+          </div>
+
+          <div class="form-group has-validation col-sm-2">
+            <label for="numero">Número</label>
+            <input
+              id="numero"
+              name='numero'
+              class="form-control"
+              placeholder="Número"
+              required
+              [ngModel]='usuario.numero'
+              #numero="ngModel"
+              [class.is-invalid]="checkIsValidField(numero)"
+            >
+            <span *ngIf="checkIsValidField(numero)" [class.invalid-feedback]="checkIsValidField(numero)">
+              Número é obrigatório!
+            </span>
+          </div>
+
+          <div class="form-group col-sm-4">
+            <label for="complemento">Complemento</label>
+            <input
+              id="complemento"
+              name='complemento'
+              class="form-control"
+              placeholder="Complemento"
+              required
+              #complemento="ngModel"
+              [ngModel]='usuario.complemento'
+            >
+          </div>
+
+          <div class="form-group has-validation col-sm-4">
+            <label for="rua">Rua</label>
+            <input
+              id="rua"
+              name='rua'
+              class="form-control"
+              placeholder="Rua"
+              required
+              #rua="ngModel"
+              [ngModel]='usuario.rua'
+              [class.is-invalid]="checkIsValidField(rua)"
+            >
+            <span *ngIf="checkIsValidField(rua)" [class.invalid-feedback]="checkIsValidField(rua)">
+              Rua é obrigatório!
+            </span>
+          </div>
         </div>
 
-        <div class="form-group has-validation col-sm-2">
-          <label for="numero">Número</label>
-          <input
-            id="numero"
-            name='numero'
-            class="form-control"
-            placeholder="Número"
-            required
-            [ngModel]='usuario.numero'
-            #numero="ngModel"
-            [class.is-invalid]="checkIsValidField(numero)"
-          >
-          <span *ngIf="checkIsValidField(numero)" [class.invalid-feedback]="checkIsValidField(numero)">
-            Número é obrigatório!
-          </span>
-        </div>
+        <div class="row mb-3">
+          <div class="form-group has-validation col-sm-4">
+            <label for="bairro">Bairro</label>
+            <input
+              id="bairro"
+              name='bairro'
+              class="form-control"
+              placeholder="Bairro"
+              required
+              #bairro="ngModel"
+              [ngModel]='usuario.bairro'
+              [class.is-invalid]="checkIsValidField(bairro)"
+            >
+            <span *ngIf="checkIsValidField(bairro)" [class.invalid-feedback]="checkIsValidField(bairro)">
+              Bairro é obrigatório!
+            </span>
+          </div>
 
-        <div class="form-group col-sm-4">
-          <label for="complemento">Complemento</label>
-          <input
-            id="complemento"
-            name='complemento'
-            class="form-control"
-            placeholder="Complemento"
-            required
-            #complemento="ngModel"
-            [ngModel]='usuario.complemento'
-          >
-        </div>
+          <div class="form-group has-validation col-sm-4">
+            <label for="cidade">Cidade</label>
+            <input
+              id="cidade"
+              name='cidade'
+              class="form-control"
+              placeholder="Cidade"
+              required
+              #cidade="ngModel"
+              [ngModel]='usuario.cidade'
+              [class.is-invalid]="checkIsValidField(cidade)"
+            >
+            <span *ngIf="checkIsValidField(cidade)" [class.invalid-feedback]="checkIsValidField(cidade)">
+              Cidade é obrigatório!
+            </span>
+          </div>
 
-        <div class="form-group has-validation col-sm-4">
-          <label for="rua">Rua</label>
-          <input
-            id="rua"
-            name='rua'
-            class="form-control"
-            placeholder="Rua"
-            required
-            #rua="ngModel"
-            [ngModel]='usuario.rua'
-            [class.is-invalid]="checkIsValidField(rua)"
-          >
-          <span *ngIf="checkIsValidField(rua)" [class.invalid-feedback]="checkIsValidField(rua)">
-            Rua é obrigatório!
-          </span>
+          <div class="form-group has-validation col-sm-4">
+            <label for="estado">Estado</label>
+            <input
+              id="estado"
+              name='estado'
+              class="form-control"
+              placeholder="Estado"
+              required
+              #estado="ngModel"
+              [ngModel]='usuario.estado'
+              [class.is-invalid]="checkIsValidField(estado)"
+            >
+            <span *ngIf="checkIsValidField(estado)" [class.invalid-feedback]="checkIsValidField(estado)">
+              Estado é obrigatório!
+            </span>
+          </div>
         </div>
       </div>
 
-      <div class="row mb-3">
-        <div class="form-group has-validation col-sm-4">
-          <label for="bairro">Bairro</label>
-          <input
-            id="bairro"
-            name='bairro'
-            class="form-control"
-            placeholder="Bairro"
-            required
-            #bairro="ngModel"
-            [ngModel]='usuario.bairro'
-            [class.is-invalid]="checkIsValidField(bairro)"
-          >
-          <span *ngIf="checkIsValidField(bairro)" [class.invalid-feedback]="checkIsValidField(bairro)">
-            Bairro é obrigatório!
-          </span>
-        </div>
-
-        <div class="form-group has-validation col-sm-4">
-          <label for="cidade">Cidade</label>
-          <input
-            id="cidade"
-            name='cidade'
-            class="form-control"
-            placeholder="Cidade"
-            required
-            #cidade="ngModel"
-            [ngModel]='usuario.cidade'
-            [class.is-invalid]="checkIsValidField(cidade)"
-          >
-          <span *ngIf="checkIsValidField(cidade)" [class.invalid-feedback]="checkIsValidField(cidade)">
-            Cidade é obrigatório!
-          </span>
-        </div>
-
-        <div class="form-group has-validation col-sm-4">
-          <label for="estado">Estado</label>
-          <input
-            id="estado"
-            name='estado'
-            class="form-control"
-            placeholder="Estado"
-            required
-            #estado="ngModel"
-            [ngModel]='usuario.estado'
-            [class.is-invalid]="checkIsValidField(estado)"
-          >
-          <span *ngIf="checkIsValidField(estado)" [class.invalid-feedback]="checkIsValidField(estado)">
-            Estado é obrigatório!
-          </span>
-        </div>
-      </div>
 
       <button [disabled]="!f.valid" type="submit" class="btn btn-primary">Submit</button>
 
