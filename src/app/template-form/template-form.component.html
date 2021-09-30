@@ -14,9 +14,9 @@
             placeholder="Nome"
             required
             #nome="ngModel"
-            [class.is-invalid]="!nome.valid && nome.touched"
+            [class.is-invalid]="checkIsValidField(nome)"
           >
-          <span *ngIf="!nome.valid && nome.touched" [class.invalid-feedback]="!nome.valid && nome.touched">
+          <span *ngIf="checkIsValidField(nome)" [class.invalid-feedback]="checkIsValidField(nome)">
             Nome é obrigatório!
           </span>
         </div>
@@ -33,9 +33,9 @@
             required
             email
             #email="ngModel"
-            [class.is-invalid]="!email.valid && email.touched"
+            [class.is-invalid]="checkIsValidField(email)"
           >
-          <span *ngIf="!email.valid && email.touched" [class.invalid-feedback]="!email.valid && email.touched">
+          <span *ngIf="checkIsValidField(email)" [class.invalid-feedback]="checkIsValidField(email)">
             Digite um email válido!
           </span>
         </div>
@@ -52,9 +52,9 @@
             required
             [ngModel]='usuario.cep'
             #cep="ngModel"
-            [class.is-invalid]="!cep.valid && cep.touched"
+            [class.is-invalid]="checkIsValidField(cep)"
           >
-          <span *ngIf="!cep.valid && cep.touched" [class.invalid-feedback]="!cep.valid && cep.touched">
+          <span *ngIf="checkIsValidField(cep)" [class.invalid-feedback]="checkIsValidField(cep)">
             CEP é obrigatório!
           </span>
         </div>
@@ -69,9 +69,9 @@
             required
             [ngModel]='usuario.numero'
             #numero="ngModel"
-            [class.is-invalid]="!numero.valid && numero.touched"
+            [class.is-invalid]="checkIsValidField(numero)"
           >
-          <span *ngIf="!numero.valid && numero.touched" [class.invalid-feedback]="!numero.valid && numero.touched">
+          <span *ngIf="checkIsValidField(numero)" [class.invalid-feedback]="checkIsValidField(numero)">
             Número é obrigatório!
           </span>
         </div>
@@ -99,9 +99,9 @@
             required
             #rua="ngModel"
             [ngModel]='usuario.rua'
-            [class.is-invalid]="!rua.valid && rua.touched"
+            [class.is-invalid]="checkIsValidField(rua)"
           >
-          <span *ngIf="!rua.valid && rua.touched" [class.invalid-feedback]="!rua.valid && rua.touched">
+          <span *ngIf="checkIsValidField(rua)" [class.invalid-feedback]="checkIsValidField(rua)">
             Rua é obrigatório!
           </span>
         </div>
@@ -118,9 +118,9 @@
             required
             #bairro="ngModel"
             [ngModel]='usuario.bairro'
-            [class.is-invalid]="!bairro.valid && bairro.touched"
+            [class.is-invalid]="checkIsValidField(bairro)"
           >
-          <span *ngIf="!bairro.valid && bairro.touched" [class.invalid-feedback]="!bairro.valid && bairro.touched">
+          <span *ngIf="checkIsValidField(bairro)" [class.invalid-feedback]="checkIsValidField(bairro)">
             Bairro é obrigatório!
           </span>
         </div>
@@ -135,9 +135,9 @@
             required
             #cidade="ngModel"
             [ngModel]='usuario.cidade'
-            [class.is-invalid]="!cidade.valid && cidade.touched"
+            [class.is-invalid]="checkIsValidField(cidade)"
           >
-          <span *ngIf="!cidade.valid && cidade.touched" [class.invalid-feedback]="!cidade.valid && cidade.touched">
+          <span *ngIf="checkIsValidField(cidade)" [class.invalid-feedback]="checkIsValidField(cidade)">
             Cidade é obrigatório!
           </span>
         </div>
@@ -152,9 +152,9 @@
             required
             #estado="ngModel"
             [ngModel]='usuario.estado'
-            [class.is-invalid]="!estado.valid && estado.touched"
+            [class.is-invalid]="checkIsValidField(estado)"
           >
-          <span *ngIf="!estado.valid && estado.touched" [class.invalid-feedback]="!estado.valid && estado.touched">
+          <span *ngIf="checkIsValidField(estado)" [class.invalid-feedback]="checkIsValidField(estado)">
             Estado é obrigatório!
           </span>
         </div>

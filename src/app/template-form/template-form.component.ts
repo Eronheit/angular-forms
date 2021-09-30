@@ -14,6 +14,10 @@ export class TemplateFormComponent implements OnInit {
 
   constructor() { }
 
+  checkIsValidField(field: any) {
+    return !field.valid && field.touched;
+  }
+
   onSubmit(form: any){
     console.log(form)
 
