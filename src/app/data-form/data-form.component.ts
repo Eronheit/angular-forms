@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -16,9 +16,9 @@ export class DataFormComponent implements OnInit {
     private http: HttpClient
   ) { }
 
-    resetar() {
-      this.dataForm.reset();
-    }
+  resetar() {
+    this.dataForm.reset();
+  }
 
   onSubmit(){
     this.http.post('https://httpbin.org/post', JSON.stringify(this.dataForm.value)).subscribe(
@@ -40,8 +40,9 @@ export class DataFormComponent implements OnInit {
     }); */
 
     this.dataForm = this.formBuilder.group({
-      nome: [null],
-      email: [null]
+      nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      //Validators.pattern(" Regex")
+      email: [null, [Validators.required, Validators.email]]
     })
   }
 
