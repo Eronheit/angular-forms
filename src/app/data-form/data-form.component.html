@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="dataForm">
+  <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="row mb-3">
         <div class="form-group has-validation col-sm-6">
