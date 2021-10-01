@@ -54,7 +54,7 @@
               [ngModel]='usuario.cep'
               #cep="ngModel"
               [class.is-invalid]="checkIsValidField(cep)"
-              (blur)="consultaCEP(cep.value)"
+              (blur)="consultaCEP(cep.value, f)"
             >
             <span *ngIf="checkIsValidField(cep)" [class.invalid-feedback]="checkIsValidField(cep)">
               CEP é obrigatório!
@@ -100,7 +100,7 @@
               placeholder="Rua"
               required
               #rua="ngModel"
-              [ngModel]='usuario.rua'
+              ngModel
               [class.is-invalid]="checkIsValidField(rua)"
             >
             <span *ngIf="checkIsValidField(rua)" [class.invalid-feedback]="checkIsValidField(rua)">
