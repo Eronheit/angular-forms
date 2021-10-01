@@ -20,6 +20,14 @@ export class DataFormComponent implements OnInit {
     this.dataForm.reset();
   }
 
+  checkIsValidField(field: any) {
+    return !this.dataForm.get(field)?.valid && this.dataForm.get(field)?.touched;
+  }
+
+  checkIsValidEmail(field: any) {
+    return this.dataForm.get(field)?.errors?.email && this.dataForm.get(field)?.touched;
+  }
+
   onSubmit(){
     this.http.post('https://httpbin.org/post', JSON.stringify(this.dataForm.value)).subscribe(
       (data) => {

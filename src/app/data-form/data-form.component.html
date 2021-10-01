@@ -11,8 +11,12 @@
             formControlName='nome'
             id="nome"
             placeholder="Nome"
-            required
+            [class.is-invalid]="checkIsValidField('nome')"
           >
+
+          <span *ngIf="checkIsValidField('nome')" [class.invalid-feedback]="checkIsValidField('nome')">
+            Email é obrigatório!
+          </span>
         </div>
 
         <div class="form-group has-validation col-sm-6">
@@ -23,10 +27,16 @@
             formControlName='email'
             id="email"
             placeholder="nome@email.com"
-            required
-            email
+            [class.is-invalid]="checkIsValidField('email')"
           >
 
+          <span *ngIf="checkIsValidField('email')" [class.invalid-feedback]="checkIsValidField('email')">
+            Email é obrigatório!
+          </span>
+
+          <span *ngIf="checkIsValidEmail('email')" [class.invalid-feedback]="checkIsValidEmail('email')">
+            Digite um email válido!
+          </span>
         </div>
       </div>
 
