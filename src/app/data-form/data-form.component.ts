@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -21,7 +21,7 @@ export class DataFormComponent implements OnInit {
   }
 
   checkIsValidField(field: any) {
-    return !this.dataForm.get(field)?.valid && this.dataForm.get(field)?.touched;
+    return !this.dataForm.get(field)?.valid && (this.dataForm.get(field)?.touched || this.dataForm.get(field)?.dirty);
   }
 
   checkIsValidEmail(field: any) {
@@ -62,16 +62,34 @@ export class DataFormComponent implements OnInit {
   }
 
   onSubmit(){
-    this.http.post('https://httpbin.org/post', JSON.stringify(this.dataForm.value)).subscribe(
-      (data) => {
-        console.log(data)
-        //Reseta o form
-        this.resetar();
-      },
-      (error) => {
-        alert('erro')
+    if(this.dataForm.valid) {
+      this.http.post('https://httpbin.org/post', JSON.stringify(this.dataForm.value)).subscribe(
+        (data) => {
+          console.log(data)
+          //Reseta o form
+          this.resetar();
+        },
+        (error) => {
+          alert('erro')
+        }
+      )
+    }
+    else {
+      this.checkValidationForm(this.dataForm)
+    }
+  }
+
+  checkValidationForm(formGroup: FormGroup) {
+
+    Object.keys(formGroup.controls).forEach(key => {
+      const control = formGroup.get(key);
+
+      control?.markAsDirty();
+
+      if(control instanceof FormGroup) {
+        this.checkValidationForm(control);
       }
-    )
+    })
   }
 
   ngOnInit(): void {
