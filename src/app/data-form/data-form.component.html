@@ -151,12 +151,20 @@
          >
           <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{ cargo.desc }}</option>
          </select>
-        
+
+      </div>
+
+      <div class="form-group has-validation col-sm-4">
+        <label for="tecnologias">Tecnologias</label>
+        <select multiple class="form-control" id="tecnologias" formControlName="tecnologias">
+          <option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nome">{{ tecnologia.desc }}</option>
+        </select>
       </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>
       <button type="button" class="btn" (click)="resetar()">Cancelar</button>
       <button type="button" class="btn" (click)="setarCargo()">Cargo</button>
+      <button type="button" class="btn btn-info" (click)="setarTecnologias()">Tecnologias</button>
 
       <app-form-debug [form]='dataForm'></app-form-debug>
     </div>
