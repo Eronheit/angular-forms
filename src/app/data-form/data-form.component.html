@@ -172,6 +172,19 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <div class="col-md-3" [class.is-invalid]="checkIsValidField('termos')">
+          <div class="checkbox">
+            <label class="checkbox-inline">
+              <input type="checkbox" formControlName="termos"> Aceito os termos.
+            </label>
+          </div>
+        </div>
+        <span *ngIf="checkIsValidField('termos')" class="invalid-feedback">
+          Por favor, aceite os termo.
+        </span>
+      </div>
+
       <button type="submit" class="btn btn-primary">Submit</button>
       <button type="button" class="btn" (click)="resetar()">Cancelar</button>
       <button type="button" class="btn" (click)="setarCargo()">Cargo</button>
