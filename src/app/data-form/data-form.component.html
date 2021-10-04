@@ -127,14 +127,13 @@
 
           <div class="form-group has-validation col-sm-4">
             <label for="estado">Estado</label>
-            <input
+            <select
               id="estado"
               formControlName='estado'
               class="form-control"
-              placeholder="Estado"
-
-              [class.is-invalid]="checkIsValidField('endereco.estado')"
-            >
+             >
+              <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
+             </select>
             <span *ngIf="checkIsValidField('endereco.estado')" class="invalid-feedback">
               Estado é obrigatório!
             </span>
