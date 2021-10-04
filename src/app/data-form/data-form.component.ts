@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -26,6 +26,39 @@ export class DataFormComponent implements OnInit {
 
   checkIsValidEmail(field: any) {
     return this.dataForm.get(field)?.errors?.email && this.dataForm.get(field)?.touched;
+  }
+
+  populaDadosForm(data: any) {
+    this.dataForm.patchValue({
+      endereco: {
+        rua: data.logradouro,
+        cep: data.cep,
+        complemento: data.complemento,
+        bairro: data.bairro,
+        cidade: data.localidade,
+        estado: data.uf
+      }
+    })
+  }
+
+  consultaCEP() {
+    let cep = this.dataForm.get('endereco.cep')?.value;
+
+    //Nova variável "cep" somente com dígitos.
+    cep = cep.replace(/\D/g, '');
+
+    //Verifica se campo cep possui valor informado.
+    if (cep != "") {
+      //Expressão regular para validar o CEP.
+      var validacep = /^[0-9]{8}$/;
+
+       //Valida o formato do CEP.
+       if(validacep.test(cep)) {
+        this.http.get(`https://viacep.com.br/ws/${cep}/json/`).subscribe(
+         (data:any) => this.populaDadosForm(data)
+        )
+       }
+    }
   }
 
   onSubmit(){
@@ -57,13 +90,13 @@ export class DataFormComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
 
       endereco: this.formBuilder.group({
-      cep: [null, Validators.required],
-      numero: [null, Validators.required],
-      complemento: [null],
-      rua: [null, Validators.required],
-      bairro: [null, Validators.required],
-      cidade: [null, Validators.required],
-      estado: [null, Validators.required]
+        cep: [null, Validators.required],
+        numero: [null, Validators.required],
+        complemento: [null],
+        rua: [null, Validators.required],
+        bairro: [null, Validators.required],
+        cidade: [null, Validators.required],
+        estado: [null, Validators.required]
       })
     })
   }

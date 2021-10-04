@@ -48,6 +48,7 @@
               id="cep"
               formControlName='cep'
               class="form-control"
+              (blur)="consultaCEP()"
               placeholder="00000-000"
               [class.is-invalid]="checkIsValidField('endereco.cep')"
             >
