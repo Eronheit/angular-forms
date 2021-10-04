@@ -40,7 +40,7 @@
         </div>
       </div>
 
-      <div>
+      <div formGroupName="endereco">
         <div class="row mb-3">
           <div class="form-group has-validation col-sm-2">
             <label for="cep">CEP</label>
@@ -49,9 +49,9 @@
               formControlName='cep'
               class="form-control"
               placeholder="00000-000"
-              [class.is-invalid]="checkIsValidField('cep')"
+              [class.is-invalid]="checkIsValidField('endereco.cep')"
             >
-            <span *ngIf="checkIsValidField('cep')" class="invalid-feedback">
+            <span *ngIf="checkIsValidField('endereco.cep')" class="invalid-feedback">
               CEP é obrigatório!
             </span>
           </div>
@@ -63,9 +63,9 @@
               formControlName='numero'
               class="form-control"
               placeholder="Número"
-              [class.is-invalid]="checkIsValidField('numero')"
+              [class.is-invalid]="checkIsValidField('endereco.numero')"
             >
-            <span *ngIf="checkIsValidField('numero')" class="invalid-feedback">
+            <span *ngIf="checkIsValidField('endereco.numero')" class="invalid-feedback">
               Número é obrigatório!
             </span>
           </div>
@@ -87,9 +87,9 @@
               formControlName='rua'
               class="form-control"
               placeholder="Rua"
-              [class.is-invalid]="checkIsValidField('rua')"
+              [class.is-invalid]="checkIsValidField('endereco.rua')"
             >
-            <span *ngIf="checkIsValidField('rua')" class="invalid-feedback">
+            <span *ngIf="checkIsValidField('endereco.rua')" class="invalid-feedback">
               Rua é obrigatório!
             </span>
           </div>
@@ -103,9 +103,9 @@
               formControlName='bairro'
               class="form-control"
               placeholder="Bairro"
-              [class.is-invalid]="checkIsValidField('bairro')"
+              [class.is-invalid]="checkIsValidField('endereco.bairro')"
             >
-            <span *ngIf="checkIsValidField('bairro')" class="invalid-feedback">
+            <span *ngIf="checkIsValidField('endereco.bairro')" class="invalid-feedback">
               Bairro é obrigatório!
             </span>
           </div>
@@ -117,9 +117,9 @@
               formControlName='cidade'
               class="form-control"
               placeholder="Cidade"
-              [class.is-invalid]="checkIsValidField('cidade')"
+              [class.is-invalid]="checkIsValidField('endereco.cidade')"
             >
-            <span *ngIf="checkIsValidField('cidade')" class="invalid-feedback">
+            <span *ngIf="checkIsValidField('endereco.cidade')" class="invalid-feedback">
               Cidade é obrigatório!
             </span>
           </div>
@@ -132,9 +132,9 @@
               class="form-control"
               placeholder="Estado"
 
-              [class.is-invalid]="checkIsValidField('estado')"
+              [class.is-invalid]="checkIsValidField('endereco.estado')"
             >
-            <span *ngIf="checkIsValidField('estado')" class="invalid-feedback">
+            <span *ngIf="checkIsValidField('endereco.estado')" class="invalid-feedback">
               Estado é obrigatório!
             </span>
           </div>
