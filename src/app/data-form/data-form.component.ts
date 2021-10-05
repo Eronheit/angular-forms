@@ -172,7 +172,7 @@ export class DataFormComponent implements OnInit {
     });
  */
     this.dataForm = this.formBuilder.group({
-      nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(35)]],
       //Validators.pattern(" Regex")
       email: [null, [Validators.required, Validators.email], [this.validarEmail.bind(this)]],
       confirmEmail: [null, FormValidations.equalsTo('email')],

@@ -13,10 +13,7 @@
             placeholder="Nome"
             [class.is-invalid]="checkIsValidField('nome')"
           >
-
-          <span *ngIf="checkIsValidField('nome')" class="invalid-feedback">
-            Email é obrigatório!
-          </span>
+          <app-error-msg [control]="dataForm.get('nome')" label="Nome"></app-error-msg>
         </div>
 
         <div class="form-group has-validation col-sm-6">
@@ -30,9 +27,7 @@
             [class.is-invalid]="checkIsValidField('email')"
           >
 
-          <span *ngIf="checkIsValidField('email')" class="invalid-feedback">
-            Email é obrigatório!
-          </span>
+          <app-error-msg [control]="dataForm.get('email')" label="Email"></app-error-msg>
 
           <span *ngIf="checkIsValidEmail('email')" class="invalid-feedback">
             Digite um email válido!
@@ -40,10 +35,6 @@
 
           <span *ngIf="dataForm.get('email')?.status === 'PENDING'" class="invalid-feedback">
             Validando email...
-          </span>
-
-          <span *ngIf="dataForm.get('email')?.hasError('emailInvalido')" class="invalid-feedback">
-            Email já cadastrado!
           </span>
         </div>
 
@@ -57,9 +48,7 @@
             placeholder="nome@email.com"
             [class.is-invalid]="checkIsValidField('confirmEmail')"
           >
-          <span *ngIf="dataForm.get('confirmEmail')?.hasError('equalsTo')" class="invalid-feedback">
-            Emails não são iguais!
-          </span>
+          <app-error-msg [control]="dataForm.get('confirmEmail')" label="Confirmar email"></app-error-msg>
         </div>
       </div>
 
@@ -75,13 +64,7 @@
               placeholder="00000-000"
               [class.is-invalid]="checkIsValidField('endereco.cep')"
             >
-            <span *ngIf="checkIsValidField('endereco.cep')" class="invalid-feedback">
-              CEP é obrigatório!
-            </span>
-
-            <span *ngIf="!dataForm.get('cep')?.hasError('cepInvalido')" class="invalid-feedback">
-              CEP inválido!
-            </span>
+            <app-error-msg [control]="dataForm.get('endereco.cep')" label="Cep"></app-error-msg>
           </div>
 
           <div class="form-group has-validation col-sm-2">
@@ -93,9 +76,7 @@
               placeholder="Número"
               [class.is-invalid]="checkIsValidField('endereco.numero')"
             >
-            <span *ngIf="checkIsValidField('endereco.numero')" class="invalid-feedback">
-              Número é obrigatório!
-            </span>
+            <app-error-msg [control]="dataForm.get('endereco.numero')" label="Número"></app-error-msg>
           </div>
 
           <div class="form-group col-sm-4">
@@ -117,9 +98,7 @@
               placeholder="Rua"
               [class.is-invalid]="checkIsValidField('endereco.rua')"
             >
-            <span *ngIf="checkIsValidField('endereco.rua')" class="invalid-feedback">
-              Rua é obrigatório!
-            </span>
+            <app-error-msg [control]="dataForm.get('endereco.rua')" label="Rua"></app-error-msg>
           </div>
         </div>
 
@@ -133,9 +112,7 @@
               placeholder="Bairro"
               [class.is-invalid]="checkIsValidField('endereco.bairro')"
             >
-            <span *ngIf="checkIsValidField('endereco.bairro')" class="invalid-feedback">
-              Bairro é obrigatório!
-            </span>
+            <app-error-msg [control]="dataForm.get('endereco.bairro')" label="Bairro"></app-error-msg>
           </div>
 
           <div class="form-group has-validation col-sm-4">
@@ -147,9 +124,7 @@
               placeholder="Cidade"
               [class.is-invalid]="checkIsValidField('endereco.cidade')"
             >
-            <span *ngIf="checkIsValidField('endereco.cidade')" class="invalid-feedback">
-              Cidade é obrigatório!
-            </span>
+            <app-error-msg [control]="dataForm.get('endereco.cidade')" label="Cidade"></app-error-msg>
           </div>
 
           <div class="form-group has-validation col-sm-4">
@@ -161,9 +136,7 @@
              >
               <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
              </select>
-            <span *ngIf="checkIsValidField('endereco.estado')" class="invalid-feedback">
-              Estado é obrigatório!
-            </span>
+             <app-error-msg [control]="dataForm.get('endereco.estado')" label="Estado"></app-error-msg>
           </div>
         </div>
       </div>
@@ -207,9 +180,7 @@
             </label>
           </div>
         </div>
-        <span *ngIf="checkIsValidField('termos')" class="invalid-feedback">
-          Por favor, aceite os termos.
-        </span>
+        <app-error-msg [control]="dataForm.get('termos')" label="Termos"></app-error-msg>
       </div>
 
       <div class="col-md-3" [class.is-invalid]="checkIsValidField('frameworks')">
@@ -223,9 +194,7 @@
           </div>
         </div>
       </div>
-      <span *ngIf="!checkIsValidField('framewoks')" class="invalid-feedback">
-        Selecione pelo menos 1 checkbox.
-      </span>
+      <app-error-msg [control]="dataForm.get('frameworks')" label="Frameworks"></app-error-msg>
 
       <button type="submit" class="btn btn-primary">Submit</button>
       <button type="button" class="btn" (click)="resetar()">Cancelar</button>
