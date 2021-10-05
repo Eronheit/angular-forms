@@ -2,10 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { FormValidations } from '../shared/form-validations';
 import { EstadoBr } from '../shared/models/estadobr';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 import { DropdownService } from '../shared/services/dropdown.service';
+import { VerificaEmailService } from './services/verifica-email.service';
 
 @Component({
   selector: 'app-data-form',
@@ -28,7 +30,8 @@ export class DataFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private dropdownService: DropdownService,
-    private cepService: ConsultaCepService
+    private cepService: ConsultaCepService,
+    private verificaEmailService: VerificaEmailService
   ) { }
 
   resetar() {
@@ -138,7 +141,15 @@ export class DataFormComponent implements OnInit {
     return this.dataForm.get('frameworks') ? (<FormArray>this.dataForm.get('frameworks')).controls : null;
   }
 
+  validarEmail(formControl: FormControl) {
+    return this.verificaEmailService.verificarEmail(formControl.value).pipe(
+      map(emailExists => emailExists ? { emailInvalido: true } : null)
+    )
+  }
+
   ngOnInit(): void {
+    this.verificaEmailService.verificarEmail('email@email.com').subscribe();
+
    /*  this.dropdownService.getEstadosBr().subscribe(
       data => this.estados = data
     ) */
@@ -163,7 +174,7 @@ export class DataFormComponent implements OnInit {
     this.dataForm = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       //Validators.pattern(" Regex")
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.required, Validators.email], [this.validarEmail.bind(this)]],
       confirmEmail: [null, FormValidations.equalsTo('email')],
 
       endereco: this.formBuilder.group({

@@ -37,6 +37,14 @@
           <span *ngIf="checkIsValidEmail('email')" class="invalid-feedback">
             Digite um email válido!
           </span>
+
+          <span *ngIf="dataForm.get('email')?.status === 'PENDING'" class="invalid-feedback">
+            Validando email...
+          </span>
+
+          <span *ngIf="dataForm.get('email')?.hasError('emailInvalido')" class="invalid-feedback">
+            Email já cadastrado!
+          </span>
         </div>
 
         <div class="form-group has-validation col-sm-6">
