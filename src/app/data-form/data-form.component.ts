@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { EstadoBr } from '../shared/models/estadobr';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
@@ -20,6 +20,8 @@ export class DataFormComponent implements OnInit {
   tecnologias!: any[];
 
   newsletterOp!: any[];
+
+  frameworks = ["Angular", "React", "Vue", "Sencha"];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -64,8 +66,18 @@ export class DataFormComponent implements OnInit {
   }
 
   onSubmit(){
+    let valueSubmit = Object.assign({}, this.dataForm.value);
+
+    valueSubmit = Object.assign(valueSubmit, {
+      frameworks: valueSubmit.frameworks.map((v: any, i: any) => v ? this.frameworks[i] : null).filter((v: any) => v !== null)
+    });
+
+    console.log(valueSubmit)
+
     if(this.dataForm.valid) {
-      this.http.post('https://httpbin.org/post', JSON.stringify(this.dataForm.value)).subscribe(
+
+
+      this.http.post('https://httpbin.org/post', JSON.stringify(valueSubmit)).subscribe(
         (data) => {
           console.log(data)
           //Reseta o form
@@ -106,6 +118,23 @@ export class DataFormComponent implements OnInit {
 
   compararCargos(obj1: any, obj2: any) {
     return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 === obj2;
+  }
+
+  buildFrameworks() {
+    const values = this.frameworks.map(v => new FormControl(false))
+
+    return this.formBuilder.array(values);
+
+    /* return this.formBuilder.array([
+      new FormControl(false),
+      new FormControl(false),
+      new FormControl(false),
+      new FormControl(false)
+    ]) */
+  }
+
+  getFrameworksControls() {
+    return this.dataForm.get('frameworks') ? (<FormArray>this.dataForm.get('frameworks')).controls : null;
   }
 
   ngOnInit(): void {
@@ -150,7 +179,9 @@ export class DataFormComponent implements OnInit {
 
       newsletter: ['s'],
 
-      termos: [null, Validators.requiredTrue]
+      termos: [null, Validators.requiredTrue],
+
+      frameworks: this.buildFrameworks()
     })
   }
 

@@ -181,8 +181,20 @@
           </div>
         </div>
         <span *ngIf="checkIsValidField('termos')" class="invalid-feedback">
-          Por favor, aceite os termo.
+          Por favor, aceite os termos.
         </span>
+      </div>
+
+      <div class="col-md-3" [class.is-invalid]="checkIsValidField('frameworks')">
+        <label for="framewoks">Frameworks</label>
+        <div id="frameworks" class="row">
+          <div class="checkbox" class="col-sm-4" formArrayName="frameworks"
+        *ngFor="let item of getFrameworksControls(); let i = index">
+          <label class="checkbox-inline">
+            <input type="checkbox" [formControlName]="i"> {{ frameworks[i] }}
+          </label>
+        </div>
+        </div>
       </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>
