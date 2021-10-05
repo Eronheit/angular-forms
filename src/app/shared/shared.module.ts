@@ -6,11 +6,13 @@ import { DropdownService } from './services/dropdown.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { FormsModule } from '@angular/forms';
+import { InputFieldComponent } from './input-field/input-field.component';
 
 @NgModule({
   declarations: [
     FormDebugComponent,
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    InputFieldComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { FormsModule } from '@angular/forms';
   ],
   exports: [
     FormDebugComponent,
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    InputFieldComponent
   ],
   providers: [
     DropdownService

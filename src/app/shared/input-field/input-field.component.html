@@ -1,0 +1,12 @@
+<div class="form-group has-validation col-sm-6">
+  <label [attr.for]="id" class="control-label">{{ label }}</label>
+  <input
+    [type]="type"
+    class="form-control"
+    [id]="id"
+    [readonly]="!!isReadOnly"
+    [(ngModel)]="value"
+    [class.is-invalid]="isValidField"
+  >
+  <app-error-msg [control]="control" [label]="label"></app-error-msg>
+</div>

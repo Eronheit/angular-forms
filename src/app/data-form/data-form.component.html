@@ -2,6 +2,15 @@
   <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="row mb-3">
+        <app-input-field
+          id="nome"
+          label="Nome"
+          class="col-sm-12"
+          formControlName='nome'
+          [control]="this.dataForm.get('nome')"
+          [isValidField]="!!checkIsValidField('nome')"
+        ></app-input-field>
+
         <div class="form-group has-validation col-sm-6">
           <label for="nome">Nome</label>
 
