@@ -189,13 +189,16 @@
         <label for="framewoks">Frameworks</label>
         <div id="frameworks" class="row">
           <div class="checkbox" class="col-sm-4" formArrayName="frameworks"
-        *ngFor="let item of getFrameworksControls(); let i = index">
-          <label class="checkbox-inline">
-            <input type="checkbox" [formControlName]="i"> {{ frameworks[i] }}
-          </label>
-        </div>
+            *ngFor="let item of getFrameworksControls(); let i = index">
+            <label class="checkbox-inline">
+              <input type="checkbox" [formControlName]="i"> {{ frameworks[i] }}
+            </label>
+          </div>
         </div>
       </div>
+      <span *ngIf="!checkIsValidField('framewoks')" class="invalid-feedback">
+        Selecione pelo menos 1 checkbox.
+      </span>
 
       <button type="submit" class="btn btn-primary">Submit</button>
       <button type="button" class="btn" (click)="resetar()">Cancelar</button>

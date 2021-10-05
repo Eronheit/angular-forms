@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { FormValidations } from '../shared/form-validations';
 import { EstadoBr } from '../shared/models/estadobr';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 import { DropdownService } from '../shared/services/dropdown.service';
@@ -72,7 +73,7 @@ export class DataFormComponent implements OnInit {
       frameworks: valueSubmit.frameworks.map((v: any, i: any) => v ? this.frameworks[i] : null).filter((v: any) => v !== null)
     });
 
-    console.log(valueSubmit)
+    console.log(this.dataForm.get('frameworks')?.valid, this.dataForm.get('frameworks')?.touched)
 
     if(this.dataForm.valid) {
 
@@ -123,7 +124,7 @@ export class DataFormComponent implements OnInit {
   buildFrameworks() {
     const values = this.frameworks.map(v => new FormControl(false))
 
-    return this.formBuilder.array(values);
+    return this.formBuilder.array(values, FormValidations.requiredMinCheckbox(1));
 
     /* return this.formBuilder.array([
       new FormControl(false),
@@ -138,6 +139,7 @@ export class DataFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console
    /*  this.dropdownService.getEstadosBr().subscribe(
       data => this.estados = data
     ) */
