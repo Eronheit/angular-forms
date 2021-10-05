@@ -50,6 +50,21 @@
           >
           <app-error-msg [control]="dataForm.get('confirmEmail')" label="Confirmar email"></app-error-msg>
         </div>
+
+        <div class="form-group has-validation col-sm-6">
+          <label for="confirmEmail">Confirme o seu email</label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName='confirmEmail'
+            id="confirmEmail"
+            placeholder="nome@email.com"
+            [class.is-invalid]="checkIsValidField('confirmEmail')"
+          >
+          <span *ngIf="dataForm.get('confirmEmail')?.hasError('equalsTo')" class="invalid-feedback">
+            Emails não são iguais!
+          </span>
+        </div>
       </div>
 
       <div formGroupName="endereco">
