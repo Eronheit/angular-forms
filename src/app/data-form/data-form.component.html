@@ -55,6 +55,10 @@
             <span *ngIf="checkIsValidField('endereco.cep')" class="invalid-feedback">
               CEP é obrigatório!
             </span>
+
+            <span *ngIf="!dataForm.get('cep')?.hasError('cepInvalido')" class="invalid-feedback">
+              CEP inválido!
+            </span>
           </div>
 
           <div class="form-group has-validation col-sm-2">
