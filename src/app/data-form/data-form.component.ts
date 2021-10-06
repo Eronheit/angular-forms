@@ -5,6 +5,7 @@ import { empty, Observable } from 'rxjs';
 import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 import { BaseFormComponent } from '../shared/base-form/base-form.component';
 import { FormValidations } from '../shared/form-validations';
+import { Cidade } from '../shared/models/cidade';
 import { EstadoBr } from '../shared/models/estadobr';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 import { DropdownService } from '../shared/services/dropdown.service';
@@ -18,8 +19,9 @@ import { VerificaEmailService } from './services/verifica-email.service';
 export class DataFormComponent extends BaseFormComponent implements OnInit {
 
   /* form!: FormGroup; */
-  /* estados!: EstadoBr[]; */
-  estados!: Observable<EstadoBr[]>;
+  estados!: EstadoBr[];
+  cidades!: Cidade[];
+  /* estados!: Observable<EstadoBr[]>; */
   cargos!: any[];
   tecnologias!: any[];
 
@@ -127,7 +129,9 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
       data => this.estados = data
     ) */
 
-    this.estados = this.dropdownService.getEstadosBr();
+    /* this.estados = this.dropdownService.getEstadosBr(); */
+
+    this.dropdownService.getEstadosBr().subscribe(data => this.estados = data);
 
     this.cargos = this.dropdownService.getCargos();
 
@@ -179,6 +183,18 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
           : empty()
         )
       ).subscribe(dados => dados ? this.populaDadosForm(dados) : {});
+
+    //this.dropdownService.getCidades(9).subscribe(console.log);
+
+    this.form.get('endereco.estado')?.valueChanges
+      .pipe(
+        //tap(estado => console.log('Novo estado', estado)),
+        map(estado => this.estados.filter(e => e.sigla === estado)),
+        map(estados => estados && estados.length > 0 ? estados[0].id : empty()),
+        switchMap(estadoId => this.dropdownService.getCidades(+estadoId)),
+        tap(console.log)
+      )
+      .subscribe(cidades => this.cidades = cidades)
   }
 
 }
