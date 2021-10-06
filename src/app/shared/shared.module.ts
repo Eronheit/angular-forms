@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { FormsModule } from '@angular/forms';
 import { InputFieldComponent } from './input-field/input-field.component';
+import { BaseFormComponent } from './base-form/base-form.component';
 
 @NgModule({
   declarations: [

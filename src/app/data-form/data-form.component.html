@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="row mb-3">
         <app-input-field
@@ -7,7 +7,7 @@
           label="Nome"
           class="col-sm-12"
           formControlName='nome'
-          [control]="this.dataForm.get('nome')"
+          [control]="this.form.get('nome')"
           [isValidField]="!!checkIsValidField('nome')"
         ></app-input-field>
 
@@ -22,7 +22,7 @@
             placeholder="Nome"
             [class.is-invalid]="checkIsValidField('nome')"
           >
-          <app-error-msg [control]="dataForm.get('nome')" label="Nome"></app-error-msg>
+          <app-error-msg [control]="form.get('nome')" label="Nome"></app-error-msg>
         </div>
 
         <div class="form-group has-validation col-sm-6">
@@ -36,13 +36,13 @@
             [class.is-invalid]="checkIsValidField('email')"
           >
 
-          <app-error-msg [control]="dataForm.get('email')" label="Email"></app-error-msg>
+          <app-error-msg [control]="form.get('email')" label="Email"></app-error-msg>
 
           <span *ngIf="checkIsValidEmail('email')" class="invalid-feedback">
             Digite um email válido!
           </span>
 
-          <span *ngIf="dataForm.get('email')?.status === 'PENDING'" class="invalid-feedback">
+          <span *ngIf="form.get('email')?.status === 'PENDING'" class="invalid-feedback">
             Validando email...
           </span>
         </div>
@@ -57,7 +57,7 @@
             placeholder="nome@email.com"
             [class.is-invalid]="checkIsValidField('confirmEmail')"
           >
-          <app-error-msg [control]="dataForm.get('confirmEmail')" label="Confirmar email"></app-error-msg>
+          <app-error-msg [control]="form.get('confirmEmail')" label="Confirmar email"></app-error-msg>
         </div>
 
         <div class="form-group has-validation col-sm-6">
@@ -70,7 +70,7 @@
             placeholder="nome@email.com"
             [class.is-invalid]="checkIsValidField('confirmEmail')"
           >
-          <span *ngIf="dataForm.get('confirmEmail')?.hasError('equalsTo')" class="invalid-feedback">
+          <span *ngIf="form.get('confirmEmail')?.hasError('equalsTo')" class="invalid-feedback">
             Emails não são iguais!
           </span>
         </div>
@@ -87,7 +87,7 @@
               placeholder="00000-000"
               [class.is-invalid]="checkIsValidField('endereco.cep')"
             >
-            <app-error-msg [control]="dataForm.get('endereco.cep')" label="Cep"></app-error-msg>
+            <app-error-msg [control]="form.get('endereco.cep')" label="Cep"></app-error-msg>
           </div>
 
           <div class="form-group has-validation col-sm-2">
@@ -99,7 +99,7 @@
               placeholder="Número"
               [class.is-invalid]="checkIsValidField('endereco.numero')"
             >
-            <app-error-msg [control]="dataForm.get('endereco.numero')" label="Número"></app-error-msg>
+            <app-error-msg [control]="form.get('endereco.numero')" label="Número"></app-error-msg>
           </div>
 
           <div class="form-group col-sm-4">
@@ -121,7 +121,7 @@
               placeholder="Rua"
               [class.is-invalid]="checkIsValidField('endereco.rua')"
             >
-            <app-error-msg [control]="dataForm.get('endereco.rua')" label="Rua"></app-error-msg>
+            <app-error-msg [control]="form.get('endereco.rua')" label="Rua"></app-error-msg>
           </div>
         </div>
 
@@ -135,7 +135,7 @@
               placeholder="Bairro"
               [class.is-invalid]="checkIsValidField('endereco.bairro')"
             >
-            <app-error-msg [control]="dataForm.get('endereco.bairro')" label="Bairro"></app-error-msg>
+            <app-error-msg [control]="form.get('endereco.bairro')" label="Bairro"></app-error-msg>
           </div>
 
           <div class="form-group has-validation col-sm-4">
@@ -147,7 +147,7 @@
               placeholder="Cidade"
               [class.is-invalid]="checkIsValidField('endereco.cidade')"
             >
-            <app-error-msg [control]="dataForm.get('endereco.cidade')" label="Cidade"></app-error-msg>
+            <app-error-msg [control]="form.get('endereco.cidade')" label="Cidade"></app-error-msg>
           </div>
 
           <div class="form-group has-validation col-sm-4">
@@ -159,7 +159,7 @@
              >
               <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
              </select>
-             <app-error-msg [control]="dataForm.get('endereco.estado')" label="Estado"></app-error-msg>
+             <app-error-msg [control]="form.get('endereco.estado')" label="Estado"></app-error-msg>
           </div>
         </div>
       </div>
@@ -203,7 +203,7 @@
             </label>
           </div>
         </div>
-        <app-error-msg [control]="dataForm.get('termos')" label="Termos"></app-error-msg>
+        <app-error-msg [control]="form.get('termos')" label="Termos"></app-error-msg>
       </div>
 
       <div class="col-md-3" [class.is-invalid]="checkIsValidField('frameworks')">
@@ -217,14 +217,14 @@
           </div>
         </div>
       </div>
-      <app-error-msg [control]="dataForm.get('frameworks')" label="Frameworks"></app-error-msg>
+      <app-error-msg [control]="form.get('frameworks')" label="Frameworks"></app-error-msg>
 
       <button type="submit" class="btn btn-primary">Submit</button>
       <button type="button" class="btn" (click)="resetar()">Cancelar</button>
       <button type="button" class="btn" (click)="setarCargo()">Cargo</button>
       <button type="button" class="btn btn-info" (click)="setarTecnologias()">Tecnologias</button>
 
-      <app-form-debug [form]='dataForm'></app-form-debug>
+      <app-form-debug [form]='form'></app-form-debug>
     </div>
   </form>
 </div>
